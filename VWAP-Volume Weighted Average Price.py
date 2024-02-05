@@ -61,15 +61,15 @@ class VWAPAlgo:
         vwap = trades.set_index('trade_time').groupby(trades.index).apply(lambda x: np.average(x['price']*x['volume'], weights=x['volume'])).cumsum() / trades.groupby(trades.index)['volume'].sum().cumsum()
         return vwap
 
-# Example usage:
 
-# Load data from a multivariate GARCH model and geometric Brownian motion
+
+# link garch and or brownian motion model's data here as a csv. 
 gbm_data = pd.read_csv('gbm_data.csv')
 garch_model = pd.read_pickle('garch_model.pkl')
 
-# Load volume data
+# sync the data from path
 volume_data = pd.read_csv('volume_data.csv')
 
-# Set up the VWAP algorithm with initial parameters
+# Set the VWAP algo's initial parameters and run !
 start_time = 0
 end_time = 25
