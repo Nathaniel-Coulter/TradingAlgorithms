@@ -58,13 +58,12 @@ class TWAPAlgo:
         twap = trades.set_index('trade_time').resample('D').mean()['price']
         return twap
 
-# Example usage:
-
-# Load data from a multivariate GARCH model and geometric Brownian motion
+#How to use with multivariate GARCH
+# link data path from your GARCH model and/or geometric Brownian motion model. 
 gbm_data = pd.read_csv('gbm_data.csv')
 garch_model = pd.read_pickle('garch_model.pkl')
 
-# Set up the TWAP algorithm with initial parameters
+# Set the TWAP algos initial parameters
 start_time = 0
 end_time = 252
 initial_inventory = 100
@@ -73,6 +72,6 @@ trade_threshold = 0.01
 
 algo = TWAPAlgo(start_time, end_time, initial_inventory, initial_price, gbm_data, garch_model, trade_threshold)
 
-# Run the simulation
+# Run that shit !
 twap = algo.simulate()
 print(twap)
